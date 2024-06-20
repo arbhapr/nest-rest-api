@@ -36,6 +36,7 @@ describe('UserController', () => {
           name: '',
         });
 
+      logger.info(response.body);
       expect(response.status).toBe(400);
       expect(response.body.errors).toBeDefined();
     });
@@ -49,9 +50,25 @@ describe('UserController', () => {
           name: 'test',
         });
 
+      logger.info(response.body);
       expect(response.status).toBe(200);
       expect(response.body.data.name).toBe('test');
       expect(response.body.data.username).toBe('test');
+    });
+
+    it('should be rejected if username already exists', async () => {
+      await testService.createUser();
+      const response = await request(app.getHttpServer())
+        .post('/api/users')
+        .send({
+          username: 'test',
+          password: 'test',
+          name: 'test',
+        });
+
+      logger.info(response.body);
+      expect(response.status).toBe(400);
+      expect(response.body.errors).toBeDefined();
     });
   });
 });
