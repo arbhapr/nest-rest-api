@@ -18,7 +18,7 @@ model User {
   password String    @db.VarChar(100)
   name     String    @db.VarChar(100)
   token    String?   @db.VarChar(100)
-  Contact  Contact[]
+  contacts Contact[]
 
   @@map("users")
 }
@@ -44,7 +44,7 @@ model Address {
   country     String   @db.VarChar(100)
   postal_code String   @db.VarChar(10)
   contact_id  Int
-  Contact     Contact? @relation(fields: [contact_id], references: [id])
+  contact     Contact? @relation(fields: [contact_id], references: [id])
 
   @@map("addresses")
 }
