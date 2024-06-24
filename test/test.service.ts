@@ -58,7 +58,7 @@ export class TestService {
         first_name: 'test',
         last_name: 'contact',
         email: 'test@test.com',
-        phone: 'test',
+        phone: '081333',
         user: {
           connect: {
             username: 'test',
